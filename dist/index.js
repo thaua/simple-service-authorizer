@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SimpleServiceAuthentication = void 0;
-class SimpleServiceAuthentication {
+exports.SimpleServiceAuthorizer = void 0;
+class SimpleServiceAuthorizer {
     constructor(config) {
+        this.config = config;
         this.config = config;
     }
     generateToken() {
@@ -14,4 +15,4 @@ class SimpleServiceAuthentication {
         return true;
     }
 }
-exports.SimpleServiceAuthentication = SimpleServiceAuthentication;
+exports.SimpleServiceAuthorizer = SimpleServiceAuthorizer;

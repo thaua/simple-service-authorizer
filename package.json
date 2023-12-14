@@ -1,8 +1,10 @@
 {
   "name": "simple-service-authorizer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple package that centralize authorization between applications",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "tsc",
     "lint": "echo \"Error: no lint specified\" && exit 1",

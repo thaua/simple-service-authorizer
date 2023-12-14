@@ -1,14 +1,8 @@
-interface SimpleServiceAuthenticationConfig {
-  serviceName: string;
-  secretWord: string;
-  tokenExpirationInSeconds: number;
-  allowedServiceNames: string[];
-}
+import {ISimpleServiceAuthorizer} from "./interfaces/simple-service-authorizer.interface";
+import {ISimpleServiceAuthorizerConfig} from "./interfaces/simple-service-authorizer-config.interface";
 
-export class SimpleServiceAuthentication {
-  private config: SimpleServiceAuthenticationConfig;
-
-  constructor(config: SimpleServiceAuthenticationConfig) {
+export class SimpleServiceAuthorizer implements ISimpleServiceAuthorizer {
+  constructor(private readonly config: ISimpleServiceAuthorizerConfig) {
     this.config = config;
   }
 
