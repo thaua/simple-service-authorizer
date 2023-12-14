@@ -14,8 +14,6 @@ RUN git config --global --add safe.directory /app
 
 RUN npm install
 
-RUN npm run bootstrap
-
 RUN npm run build
 
 CMD ["echo", "Done"]

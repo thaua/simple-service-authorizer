@@ -8,10 +8,10 @@
     "dist"
   ],
   "scripts": {
-    "bootstrap": "husky install",
     "build": "tsc",
     "lint": "eslint --fix .",
-    "test": "node --require ts-node/register --test **/*.test.ts"
+    "test": "node --require ts-node/register --test **/*.test.ts",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
