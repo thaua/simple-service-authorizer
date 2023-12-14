@@ -10,6 +10,7 @@ export class SimpleServiceAuthorizer implements ISimpleServiceAuthorizer {
     return 'generated-token';
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validateToken(token: string): boolean {
     return true;
   }
