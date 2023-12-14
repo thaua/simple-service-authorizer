@@ -1,5 +1,0 @@
-#!/bin/bash
-
-npx husky-init
-
-docker build --rm -t simple-service-authorizer-package .

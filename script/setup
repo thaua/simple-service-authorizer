@@ -1,0 +1,6 @@
+#!/bin/bash
+
+npx husky install
+
+docker-compose build
+docker-compose up

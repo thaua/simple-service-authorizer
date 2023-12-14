@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run --rm -t --name simple-service-authorizer-testing simple-service-authorizer-package npm test

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose run --rm -T --name simple-service-authorizer-linting app npm run lint

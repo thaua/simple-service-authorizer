@@ -1,0 +1,5 @@
+#!/bin/bash
+
+scripts/setup
+
+docker-compose run --rm -T --name simple-service-authorizer-publishing app npm publish

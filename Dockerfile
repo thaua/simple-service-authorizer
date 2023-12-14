@@ -12,8 +12,4 @@ RUN apt-get update \
 
 RUN git config --global --add safe.directory /app
 
-RUN npm install
-
-RUN npm run build
-
-CMD ["echo", "Done"]
+CMD ["sh", "-c", "npm install && npm run build"]
