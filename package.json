@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --fix ./src",
-    "test": "node --require ts-node/register --test **/**/*.test.ts"
+    "test": "node --require ts-node/register --test-reporter spec --test **/**/*.test.ts"
   },
   "keywords": [],
   "author": "",

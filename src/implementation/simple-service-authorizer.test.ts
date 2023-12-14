@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { beforeEach, describe, it } from 'node:test';
 import { IAuthorizationObject } from '../interfaces/authorization-object.interface';
 import { SimpleServiceAuthorizer } from './simple-service-authorizer';
+import * as NodeTimersPromises from 'node:timers/promises';
 
 describe('SimpleServiceAuthorizer', () => {
   const mockedServiceName = 'unit-test';
@@ -87,7 +88,7 @@ describe('SimpleServiceAuthorizer', () => {
           expiresIn: 1,
         });
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await NodeTimersPromises.setTimeout(2000)
       });
 
       it('throws error', () => {
