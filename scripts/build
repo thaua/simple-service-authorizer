@@ -2,4 +2,4 @@
 
 npx husky-init
 
-docker build -t simple-service-authorizer-package .
+docker build --rm -t simple-service-authorizer-package .

@@ -2,4 +2,4 @@
 
 scripts/build
 
-docker run -it --name simple-service-authorizer-publishing simple-service-authorizer-package npm publish
+docker run --rm -it --name simple-service-authorizer-publishing simple-service-authorizer-package npm publish
