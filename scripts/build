@@ -1,3 +1,4 @@
 #!/bin/bash
 
 docker build -t simple-service-authorizer-package .
+docker run -it --name simple-service-authorizer-husky simple-service-authorizer-package npm run bootstrap
