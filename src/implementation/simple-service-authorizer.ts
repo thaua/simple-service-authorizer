@@ -1,3 +1,5 @@
+import * as jwt from 'jsonwebtoken';
+import { IAuthorizationObject } from '../interfaces/authorization-object.interface';
 import { ISimpleServiceAuthorizerConfig } from '../interfaces/simple-service-authorizer-config.interface';
 import { ISimpleServiceAuthorizer } from '../interfaces/simple-service-authorizer.interface';
 
@@ -7,11 +9,19 @@ export class SimpleServiceAuthorizer implements ISimpleServiceAuthorizer {
   }
 
   generateToken(): string {
-    return 'generated-token';
+    return jwt.sign(
+      { serviceName: this.config.serviceName } as IAuthorizationObject,
+      this.config.secretWord,
+      {
+        expiresIn: this.config.tokenExpirationInSeconds,
+      },
+    );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  validateToken(token: string): boolean {
-    return true;
+  validateToken(serviceName: string, token: string): boolean {
+    return (
+      (jwt.verify(token, this.config.secretWord) as IAuthorizationObject).serviceName ===
+      serviceName
+    );
   }
 }

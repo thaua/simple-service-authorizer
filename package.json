@@ -1,6 +1,6 @@
 {
   "name": "simple-service-authorizer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A simple package that centralize authorization between applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --fix ./src",
-    "test": "node --require ts-node/register --test **/*.test.ts"
+    "test": "node --require ts-node/register --test **/**/*.test.ts"
   },
   "keywords": [],
   "author": "",

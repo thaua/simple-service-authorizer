@@ -1,5 +1,5 @@
 export interface ISimpleServiceAuthorizer {
   generateToken(): string;
 
-  validateToken(token: string): boolean;
+  validateToken(serviceName: string, token: string): boolean;
 }
