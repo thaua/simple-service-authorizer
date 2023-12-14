@@ -4,16 +4,31 @@
   "description": "A simple package that centralize authorization between applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "bootstrap": "husky install",
     "build": "tsc",
-    "lint": "echo \"Error: no lint specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix .",
+    "test": "node --require ts-node/register --test **/*.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "eslint": "^8.52.0",
+    "husky": "^8.0.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
