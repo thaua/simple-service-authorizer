@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Publish Code Climate
+      - name: Run Tests & Publish Code Climate
         uses: paambaati/codeclimate-action@v3.1.1
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

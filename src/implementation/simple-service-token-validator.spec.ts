@@ -21,17 +21,15 @@ describe('SimpleServiceTokenValidator', () => {
   describe('validateToken', () => {
     let result: boolean;
 
-    beforeEach(() => {});
-
     describe('with invalid serviceName', () => {
       const wrongServiceName: string = 'unit-test-2';
 
       beforeEach(() => {
         jest.spyOn(jwt, 'verify').mockReturnValue({
-          serviceName: mockedServiceName,
+          serviceName: wrongServiceName,
         } as IAuthorizationObject as any);
 
-        result = validator.validate(wrongServiceName, 'anyToken');
+        result = validator.validate(mockedServiceName, 'anyToken');
       });
 
       it('returns false', () => {
