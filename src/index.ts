@@ -1,4 +1,4 @@
-import { SimpleServiceAuthorizer } from './implementation/simple-service-authorizer';
-import { ISimpleServiceAuthorizerConfig } from './interfaces/simple-service-authorizer-config.interface';
+import { SimpleServiceTokenGenerator } from './implementation/simple-service-token-generator';
+import { SimpleServiceTokenValidator } from './implementation/simple-service-token-validator';
 
-export { ISimpleServiceAuthorizerConfig, SimpleServiceAuthorizer };
+export { SimpleServiceTokenGenerator, SimpleServiceTokenValidator };

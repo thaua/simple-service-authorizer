@@ -1,6 +1,6 @@
 {
   "name": "simple-service-authorizer",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "A simple package that centralize authorization between applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
