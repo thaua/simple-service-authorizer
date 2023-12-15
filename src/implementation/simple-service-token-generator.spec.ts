@@ -1,6 +1,4 @@
 import * as jwt from 'jsonwebtoken';
-import assert from 'node:assert/strict';
-import { beforeEach, describe, it } from 'node:test';
 import { SimpleServiceTokenGenerator } from './simple-service-token-generator';
 
 describe('SimpleServiceTokenGenerator', () => {
@@ -12,7 +10,7 @@ describe('SimpleServiceTokenGenerator', () => {
   beforeEach(() => {
     generator = new SimpleServiceTokenGenerator({
       secretWord: mockedSecret,
-      serviceName: mockedServiceName
+      serviceName: mockedServiceName,
     });
   });
 
@@ -27,9 +25,9 @@ describe('SimpleServiceTokenGenerator', () => {
       const generatedTokenObjectDecoded = jwt.verify(generatedToken, mockedSecret) as any;
       const iat = generatedTokenObjectDecoded.iat;
 
-      assert.ok(iat);
-      assert.equal(generatedTokenObjectDecoded.serviceName, mockedServiceName);
-      assert.equal(generatedTokenObjectDecoded.exp, Number(iat) + mockedExpirationInSeconds);
+      expect(iat).toBeDefined();
+      expect(generatedTokenObjectDecoded.serviceName).toEqual(mockedServiceName);
+      expect(generatedTokenObjectDecoded.exp).toEqual(Number(iat) + mockedExpirationInSeconds);
     });
   });
 });
