@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { TokenExpiredError } from 'jsonwebtoken';
-import { ISimpleServiceValidatorConfig } from '../../dist/interfaces/config/simple-service-token-validator-config.interface';
+import { ISimpleServiceTokenValidatorConfig } from '../definitions/config/simple-service-token-validator-config.interface';
 import { IAuthorizationObject } from '../definitions/core/authorization-object.interface';
 import { SimpleServiceTokenValidatorStatus } from '../definitions/core/simple-service-token-validator-state.enum';
 import { ISimpleServiceTokenValidator } from '../definitions/simple-service-token-validator.interface';
@@ -8,7 +8,7 @@ import { ISimpleServiceTokenValidator } from '../definitions/simple-service-toke
 export class SimpleServiceTokenValidator implements ISimpleServiceTokenValidator {
   public state?: SimpleServiceTokenValidatorStatus;
 
-  constructor(public readonly config: ISimpleServiceValidatorConfig) {
+  constructor(public readonly config: ISimpleServiceTokenValidatorConfig) {
     this.config = config;
   }
 
