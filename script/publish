@@ -1,9 +1,13 @@
 #!/bin/bash
 
-script/setup
-
 version=$(grep -o '"version": *"[^"]*"' package.json | awk -F '"' '{print $4}')
 
-git tag -a "$version" -m "Release $version" && git push origin "$version"
+if git ls-remote --tags origin "$version" | grep -q "$version"; then
+  echo "Tag $version already exists. Skipping tagging and publishing."
+else
+  script/setup
 
-docker-compose run --rm -T --name simple-service-authorizer-publishing app npm publish
+  git tag -a "$version" -m "Release $version" && git push origin "$version"
+
+  docker-compose run --rm -T --name simple-service-authorizer-publishing app npm publish
+fi

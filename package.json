@@ -1,6 +1,6 @@
 {
   "name": "simple-service-authorizer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple package that centralize authorization between applications",
   "keywords": [
     "authentication",
@@ -15,6 +15,7 @@
   ],
   "author": "Thauã Silveira",
   "license": "MIT",
+  "repository": "https://github.com/thaua/simple-service-authorizer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
