@@ -8,8 +8,8 @@
     "dist"
   ],
   "engines": {
-    "npm": ">=10.2.5",
-    "node": ">=21.4.0"
+    "npm": ">=10",
+    "node": ">=20"
   },
   "scripts": {
     "build": "tsc",
