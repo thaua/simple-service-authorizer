@@ -26,12 +26,19 @@ export class SimpleServiceTokenValidator implements ISimpleServiceTokenValidator
       return false;
     }
 
-    if (result?.serviceName !== serviceName) {
-      this.state = SimpleServiceTokenValidatorStatus.INVALID;
-      return false;
+    const tokenServiceName = result?.serviceName;
+    const isTokenConsistent = tokenServiceName === serviceName;
+
+    const isTokenOnAllowedList =
+      this.config.allowedServiceNames.length === 0 ||
+      this.config.allowedServiceNames.indexOf(tokenServiceName) > -1;
+
+    if (isTokenConsistent && isTokenOnAllowedList) {
+      this.state = SimpleServiceTokenValidatorStatus.VALID;
+      return true;
     }
 
-    this.state = SimpleServiceTokenValidatorStatus.VALID;
-    return true;
+    this.state = SimpleServiceTokenValidatorStatus.INVALID;
+    return false;
   }
 }

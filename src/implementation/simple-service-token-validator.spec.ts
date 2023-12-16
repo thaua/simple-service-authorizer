@@ -112,7 +112,7 @@ describe('SimpleServiceTokenValidator', () => {
         } as IAuthorizationObject as any);
       });
 
-      describe('with invalid serviceName', () => {
+      describe('with invalid/inconsistency serviceName', () => {
         beforeEach(() => {
           result = validator.validate(mockedServiceName + '_wrong', 'anyToken');
         });
@@ -123,6 +123,40 @@ describe('SimpleServiceTokenValidator', () => {
 
         it('set state as invalid', () => {
           expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.INVALID);
+        });
+      });
+
+      describe('with not allowed serviceName', () => {
+        describe('with no service-names restriction', () => {
+          beforeEach(() => {
+            validator.config.allowedServiceNames = [];
+
+            result = validator.validate(mockedServiceName, 'anyToken');
+          });
+
+          it('returns true', () => {
+            expect(result).toBeTruthy();
+          });
+
+          it('set state as valid', () => {
+            expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.VALID);
+          });
+        });
+
+        describe('with service-names restriction', () => {
+          beforeEach(() => {
+            validator.config.allowedServiceNames = ['any-other-service-a', 'any-other-service-b'];
+
+            result = validator.validate(mockedServiceName, 'anyToken');
+          });
+
+          it('returns false', () => {
+            expect(result).toBeFalsy();
+          });
+
+          it('set state as invalid', () => {
+            expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.INVALID);
+          });
         });
       });
 
