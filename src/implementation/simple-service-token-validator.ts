@@ -13,27 +13,25 @@ export class SimpleServiceTokenValidator implements ISimpleServiceTokenValidator
   }
 
   validate(serviceName: string, token: string): boolean {
-    try {
-      const result: IAuthorizationObject = jwt.verify(
-        token,
-        this.config.secretWord,
-      ) as IAuthorizationObject;
+    let result: IAuthorizationObject;
 
-      if (result?.serviceName === serviceName) {
-        this.state = SimpleServiceTokenValidatorStatus.VALID;
-        return true;
-      } else {
-        this.state = SimpleServiceTokenValidatorStatus.INVALID;
-        return false;
-      }
+    try {
+      result = jwt.verify(token, this.config.secretWord) as IAuthorizationObject;
     } catch (e) {
-      if (e instanceof TokenExpiredError) {
-        this.state = SimpleServiceTokenValidatorStatus.EXPIRED;
-      } else {
-        this.state = SimpleServiceTokenValidatorStatus.ERROR;
-      }
+      this.state =
+        e instanceof TokenExpiredError
+          ? SimpleServiceTokenValidatorStatus.EXPIRED
+          : SimpleServiceTokenValidatorStatus.ERROR;
 
       return false;
     }
+
+    if (result?.serviceName !== serviceName) {
+      this.state = SimpleServiceTokenValidatorStatus.INVALID;
+      return false;
+    }
+
+    this.state = SimpleServiceTokenValidatorStatus.VALID;
+    return true;
   }
 }
