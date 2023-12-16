@@ -13,10 +13,23 @@ export class SimpleServiceTokenValidator implements ISimpleServiceTokenValidator
   }
 
   validate(serviceName: string, token: string): boolean {
-    let result: IAuthorizationObject;
-
     try {
-      result = jwt.verify(token, this.config.secretWord) as IAuthorizationObject;
+      const result: IAuthorizationObject = jwt.verify(
+        token,
+        this.config.secretWord,
+      ) as IAuthorizationObject;
+
+      const tokenServiceName = result?.serviceName;
+      const isTokenConsistent = tokenServiceName === serviceName;
+
+      const isTokenOnAllowedList =
+        this.config.allowedServiceNames.length === 0 ||
+        this.config.allowedServiceNames.includes(tokenServiceName);
+
+      if (isTokenConsistent && isTokenOnAllowedList) {
+        this.state = SimpleServiceTokenValidatorStatus.VALID;
+        return true;
+      }
     } catch (e) {
       this.state =
         e instanceof TokenExpiredError
@@ -24,18 +37,6 @@ export class SimpleServiceTokenValidator implements ISimpleServiceTokenValidator
           : SimpleServiceTokenValidatorStatus.ERROR;
 
       return false;
-    }
-
-    const tokenServiceName = result?.serviceName;
-    const isTokenConsistent = tokenServiceName === serviceName;
-
-    const isTokenOnAllowedList =
-      this.config.allowedServiceNames.length === 0 ||
-      this.config.allowedServiceNames.indexOf(tokenServiceName) > -1;
-
-    if (isTokenConsistent && isTokenOnAllowedList) {
-      this.state = SimpleServiceTokenValidatorStatus.VALID;
-      return true;
     }
 
     this.state = SimpleServiceTokenValidatorStatus.INVALID;
