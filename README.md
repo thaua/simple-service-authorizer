@@ -111,6 +111,10 @@ $ script/quality  # runs quality tool on application (CodeClimate)
 $ script/bash     # access project container with bash
 ```
 
+### Publishing requirements
+
+To publish a new package version you need to configure npm authentication with a **.npmrc** file in the project root folder following **.npmrc.example** example.  
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
