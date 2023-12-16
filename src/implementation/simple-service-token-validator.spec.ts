@@ -26,10 +26,10 @@ describe('SimpleServiceTokenValidator', () => {
 
       beforeEach(() => {
         jest.spyOn(jwt, 'verify').mockReturnValue({
-          serviceName: wrongServiceName,
+          serviceName: mockedServiceName,
         } as IAuthorizationObject as any);
 
-        result = validator.validate(mockedServiceName, 'anyToken');
+        result = validator.validate(wrongServiceName, 'anyToken');
       });
 
       it('returns false', () => {
