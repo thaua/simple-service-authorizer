@@ -21,27 +21,6 @@ describe('SimpleServiceTokenValidator', () => {
   describe('validateToken', () => {
     let result: boolean;
 
-    describe('with invalid serviceName', () => {
-      const wrongServiceName1: string = 'unit-test-1';
-      const wrongServiceName2: string = 'unit-test-2';
-
-      beforeEach(() => {
-        jest.spyOn(jwt, 'verify').mockReturnValue({
-          serviceName: wrongServiceName1,
-        } as IAuthorizationObject as any);
-
-        result = validator.validate(wrongServiceName2, 'anyToken');
-      });
-
-      it('returns false', () => {
-        expect(result).toBeFalsy();
-      });
-
-      it('set state as invalid', () => {
-        expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.INVALID);
-      });
-    });
-
     describe('with expired token', () => {
       beforeEach(() => {
         jest.spyOn(jwt, 'verify').mockImplementation(() => {
@@ -126,21 +105,39 @@ describe('SimpleServiceTokenValidator', () => {
       });
     });
 
-    describe('with valid token', () => {
+    describe('with valid response', () => {
       beforeEach(() => {
         jest.spyOn(jwt, 'verify').mockReturnValue({
           serviceName: mockedServiceName,
         } as IAuthorizationObject as any);
-
-        result = validator.validate(mockedServiceName, 'anyToken');
       });
 
-      it('returns true', () => {
-        expect(result).toBeTruthy();
+      describe('with invalid serviceName', () => {
+        beforeEach(() => {
+          result = validator.validate(mockedServiceName + '_wrong', 'anyToken');
+        });
+
+        it('returns false', () => {
+          expect(result).toBeFalsy();
+        });
+
+        it('set state as invalid', () => {
+          expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.INVALID);
+        });
       });
 
-      it('set state as valid', () => {
-        expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.VALID);
+      describe('with valid token', () => {
+        beforeEach(() => {
+          result = validator.validate(mockedServiceName, 'anyToken');
+        });
+
+        it('returns true', () => {
+          expect(result).toBeTruthy();
+        });
+
+        it('set state as valid', () => {
+          expect(validator.state).toEqual(SimpleServiceTokenValidatorStatus.VALID);
+        });
       });
     });
   });
