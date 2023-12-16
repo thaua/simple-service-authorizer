@@ -5,7 +5,7 @@ version=$(grep -o '"version": *"[^"]*"' package.json | awk -F '"' '{print $4}')
 if git ls-remote --tags origin "$version" | grep -q "$version"; then
   echo "Tag $version already exists. Skipping tagging and publishing."
 else
-  script/setup
+#  script/setup
 
   git tag -a "$version" -m "Release $version" && git push origin "$version"
 

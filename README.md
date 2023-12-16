@@ -89,15 +89,15 @@ const serviceRequestValidationMiddleware = (req, res, next) => {
 
 ```
 
-### Development
+## Development
 
-## Requirements
+### Requirements
 
 We are using docker to make tools version consistency on development.
 
 - [Docker](https://www.docker.com/get-started)
 
-## Building, testing and running
+### Building, testing and running
 
 We are using Docker with the [scripts-to-rule-them-all](https://github.com/github/scripts-to-rule-them-all) idea, so we
 have a set of scripts inside `script` folder that should cover all development needs:
