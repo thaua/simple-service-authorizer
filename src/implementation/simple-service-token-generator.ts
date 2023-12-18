@@ -6,7 +6,7 @@ import { ISimpleServiceTokenGenerator } from '../definitions/simple-service-toke
 export class SimpleServiceTokenGenerator implements ISimpleServiceTokenGenerator {
   constructor(public readonly config: ISimpleServiceTokenGeneratorConfig) {}
 
-  generate(tokenExpirationInSeconds: number): string {
+  generate(tokenExpirationInSeconds: number = 30): string {
     return jwt.sign(
       { serviceName: this.config.serviceName } as IAuthorizationObject,
       this.config.secretWord,

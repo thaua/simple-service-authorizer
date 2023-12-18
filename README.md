@@ -34,7 +34,7 @@ const simpleServiceTokenGenerator = new SimpleServiceTokenGenerator({
     serviceName: SERVICE_NAME,
 });
 
-const token = simpleServiceTokenGenerator.generate(20); // 20 is the token expiration time in seconds
+const token = simpleServiceTokenGenerator.generate(20); // 20 is the token expiration time in seconds, default is 30 (if not defined)
 
 // now we can request other service with the token. In this example we will use HTTP
 
