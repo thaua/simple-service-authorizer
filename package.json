@@ -1,6 +1,6 @@
 {
   "name": "simple-service-authorizer",
-  "version": "1.4.1",
+  "version": "1.5.1",
   "description": "A simple package that centralize authorization between applications",
   "keywords": [
     "authentication",
