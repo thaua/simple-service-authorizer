@@ -1,4 +1,8 @@
-import { SimpleServiceTokenGenerator, SimpleServiceTokenValidator } from './index';
+import {
+  SimpleServiceTokenGenerator,
+  SimpleServiceTokenValidator,
+  SimpleServiceTokenValidatorStatus,
+} from './index';
 
 describe('exports', () => {
   it('export SimpleServiceTokenGenerator', () => {
@@ -9,5 +13,10 @@ describe('exports', () => {
   it('export SimpleServiceTokenValidator', () => {
     expect(SimpleServiceTokenValidator).toBeDefined();
     expect(typeof SimpleServiceTokenValidator).toBe('function');
+  });
+
+  it('export SimpleServiceTokenValidatorStatus', () => {
+    expect(SimpleServiceTokenValidatorStatus).toBeDefined();
+    expect(typeof SimpleServiceTokenValidatorStatus).toBe('object');
   });
 });

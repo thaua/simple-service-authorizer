@@ -18,15 +18,13 @@
   "repository": "https://github.com/thaua/simple-service-authorizer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "engines": {
     "npm": ">=10",
     "node": ">=20"
   },
   "scripts": {
     "build": "tsc",
+    "format": "prettier --write --check ./src --config ./.prettierrc",
     "lint": "eslint --fix ./src",
     "test": "jest"
   },
